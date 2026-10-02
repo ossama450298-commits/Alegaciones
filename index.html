@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alegaciones · Programación a Medida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Buzón de Quejas · Programación a Medida_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f1e8;
+    --ink: #1f1d1a;
+    --muted: #7d776c;
+    --accent: #e8492b;
+    --accent-soft: #c4503a;
+    --panel: #fffdf8;
+    --line: #e0d8c8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(232,73,43,0.10), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(232,73,43,0.07), transparent 45%);
+  }
+  ::selection { background: var(--accent); color: #fff; }
+
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* NAV */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand svg { width: 34px; height: 34px; }
+  .brand-name {
+    font-family: 'Space Mono', monospace; font-weight: 700;
+    font-size: 13px; letter-spacing: 1px; text-transform: uppercase; line-height: 1.1;
+  }
+  .brand-name span { color: var(--accent); }
+  .nav-tag {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 1px;
+  }
+
+  /* HERO */
+  header { padding: 80px 0 50px; }
+  .kicker {
+    font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 22px;
+    opacity: 0; animation: rise .7s ease forwards .1s;
+  }
+  h1 {
+    font-size: clamp(48px, 9vw, 104px); font-weight: 900; line-height: 0.95;
+    letter-spacing: -0.03em; margin-bottom: 28px;
+  }
+  h1 .l1 { display: block; opacity: 0; animation: rise .7s ease forwards .2s; }
+  h1 .l2 {
+    display: block; font-style: italic; font-weight: 500; color: var(--accent);
+    opacity: 0; animation: rise .7s ease forwards .35s;
+  }
+  .lede {
+    max-width: 560px; font-size: 20px; color: var(--muted);
+    opacity: 0; animation: rise .7s ease forwards .5s;
+  }
+  .lede b { color: var(--ink); font-weight: 600; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* DISCLAIMER STRIP */
+  .strip {
+    margin: 10px 0 70px; overflow: hidden; border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line); padding: 14px 0; white-space: nowrap;
+  }
+  .strip-track {
+    display: inline-block; font-family: 'Space Mono', monospace; font-size: 13px;
+    letter-spacing: 2px; color: var(--muted); animation: marquee 28s linear infinite;
+  }
+  .strip-track span { margin: 0 26px; }
+  .strip-track b { color: var(--accent); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* FORM */
+  .form-card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+    padding: 42px clamp(24px, 5vw, 52px); position: relative;
+  }
+  .form-card::before {
+    content: 'Nº ' attr(data-num); position: absolute; top: 22px; right: 26px;
+    font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted);
+  }
+  .form-title { font-size: 30px; font-weight: 900; margin-bottom: 6px; }
+  .form-sub { color: var(--muted); margin-bottom: 34px; font-size: 16px; }
+
+  .field { margin-bottom: 26px; }
+  label {
+    display: block; font-family: 'Space Mono', monospace; font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-soft);
+    margin-bottom: 9px;
+  }
+  label .opt { color: var(--muted); text-transform: none; letter-spacing: 0; }
+  input, select, textarea {
+    width: 100%; background: #faf6ee; border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px 16px; color: var(--ink);
+    font-family: 'Fraunces', serif; font-size: 16px; transition: border-color .2s, box-shadow .2s;
+  }
+  textarea { resize: vertical; min-height: 130px; line-height: 1.5; }
+  input:focus, select:focus, textarea:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(232,73,43,0.15);
+  }
+  .row { display: flex; gap: 20px; flex-wrap: wrap; }
+  .row .field { flex: 1; min-width: 200px; }
+
+  .meter-wrap { margin-top: 8px; }
+  .meter-labels {
+    display: flex; justify-content: space-between;
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .submit {
+    width: 100%; margin-top: 12px; background: var(--accent); color: #fffdf8;
+    border: none; border-radius: 10px; padding: 18px; cursor: pointer;
+    font-family: 'Space Mono', monospace; font-weight: 700; font-size: 15px;
+    letter-spacing: 1.5px; text-transform: uppercase; transition: transform .15s, background .2s;
+  }
+  .submit:hover { transform: translateY(-2px); background: #f25640; }
+  .submit:active { transform: translateY(0); }
+
+  .fineprint {
+    text-align: center; margin-top: 18px; font-size: 13px; color: var(--muted);
+    font-style: italic;
+  }
+
+  /* RESPONSE */
+  .response {
+    display: none; margin-top: 28px; padding: 30px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(232,73,43,0.12), rgba(232,73,43,0.04));
+    border: 1px solid var(--accent); animation: rise .5s ease;
+  }
+  .response.show { display: block; }
+  .response h3 { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+  .response h3 em { color: var(--accent); }
+  .response p { color: var(--ink); opacity: .85; }
+  .ticket {
+    font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted);
+    margin-top: 14px; letter-spacing: 1px;
+  }
+
+  /* FAQ */
+  .faq { padding: 80px 0 40px; }
+  .faq h2 { font-size: 40px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .faq .sub { color: var(--muted); margin-bottom: 36px; font-style: italic; }
+  details {
+    border-bottom: 1px solid var(--line); padding: 22px 0; cursor: pointer;
+  }
+  summary {
+    list-style: none; font-size: 21px; font-weight: 600; display: flex;
+    justify-content: space-between; align-items: center; gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary .plus {
+    font-family: 'Space Mono', monospace; color: var(--accent); flex-shrink: 0;
+    transition: transform .25s;
+  }
+  details[open] summary .plus { transform: rotate(45deg); }
+  details p { margin-top: 12px; color: var(--muted); font-size: 16px; }
+
+  footer {
+    border-top: 1px solid var(--line); padding: 40px 0 60px; text-align: center;
+  }
+  footer .f-brand { font-weight: 900; font-size: 22px; }
+  footer .f-brand span { color: var(--accent); }
+  footer .f-note {
+    font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted);
+    margin-top: 10px; letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 6 V14" stroke="#e8492b" stroke-width="3" stroke-linecap="round"></path>
+        <circle cx="32" cy="5" r="3" fill="#e8492b"></circle>
+        <rect x="16" y="14" width="32" height="26" rx="5" stroke="#1f1d1a" stroke-width="3"></rect>
+        <circle cx="25" cy="26" r="3.4" fill="#e8492b"></circle>
+        <circle cx="39" cy="26" r="3.4" fill="#e8492b"></circle>
+        <path d="M25 33 H39" stroke="#1f1d1a" stroke-width="3" stroke-linecap="round"></path>
+        <path d="M16 24 H10 M48 24 H54" stroke="#1f1d1a" stroke-width="3" stroke-linecap="round"></path>
+        <rect x="20" y="44" width="24" height="14" rx="3" stroke="#1f1d1a" stroke-width="3"></rect>
+      </svg>
+      <div class="brand-name">Programación<br><span>a Medida</span></div>
+    </div>
+    <div class="nav-tag">// canal_de_alegaciones.exe</div>
+  </nav>
+
+  <header>
+    <div class="kicker">Oficina oficial de alegaciones</div>
+    <h1>
+      <span class="l1">Cuéntenoslo</span>
+      <span class="l2">todo. Igualmente.</span>
+    </h1>
+    <p class="lede">Ponga aquí su alegación, aunque nos da igual. <b>La leeremos, pero solo para enterarnos del chisme</b>.</p>
+  </header>
+
+  <div class="strip">
+    <div class="strip-track">
+      <span>SU OPINIÓN NOS DA IGUAL <b>·</b></span>
+      <span>PERO PUEDE ALEGAR <b>·</b></span>
+      <span>LO LEEMOS SOLO POR EL CHISME <b>·</b></span>
+      <span>GRACIAS POR EL SALSEO <b>·</b></span>
+      <span>SU OPINIÓN NOS DA IGUAL <b>·</b></span>
+      <span>PERO PUEDE ALEGAR <b>·</b></span>
+      <span>LO LEEMOS SOLO POR EL CHISME <b>·</b></span>
+      <span>GRACIAS POR EL SALSEO <b>·</b></span>
+    </div>
+  </div>
+
+  <div class="form-card" data-num="∞">
+    <div class="form-title">Ponga su alegación</div>
+    <p class="form-sub">Aunque nos da igual. La leeremos solo para enterarnos del chisme.</p>
+
+    <div class="row">
+      <div class="field">
+        <label>Nombre <span class="opt">(o anónimo, da igual)</span></label>
+        <input type="text" id="nombre" placeholder="Su nombre">
+      </div>
+      <div class="field">
+        <label>Asunto</label>
+        <input type="text" id="asunto" placeholder="¿Qué alega hoy?">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tipo de alegación</label>
+      <select id="categoria">
+        <option>El producto no hace lo que prometieron</option>
+        <option>Tardaron una eternidad</option>
+        <option>Me cobraron de más</option>
+        <option>Nadie contesta nunca</option>
+        <option>Simplemente tenía un mal día</option>
+        <option>Otra cosa que tampoco van a arreglar</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Su alegación (nos da igual, pero cuente el chisme entero)</label>
+      <textarea id="queja" placeholder="Cuéntelo todo, con nombres y detalles. No vamos a hacer nada, pero queremos enterarnos."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Nivel de indignación</label>
+      <div class="meter-wrap">
+        <input type="range" id="rango" min="0" max="100" value="50">
+        <div class="meter-labels">
+          <span>Leve molestia</span>
+          <span id="rangoVal">Algo molesto</span>
+          <span>Furia volcánica</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit" id="enviar">Enviar al vacío →</button>
+    <p class="fineprint">Al enviar, acepta que probablemente no pase absolutamente nada.</p>
+
+    <div class="response" id="response">
+      <h3>Alegación <em>recibida</em>. Chisme anotado.</h3>
+      <p id="respText">Gracias. La hemos leído entera, solo por el chisme. Que tenga un buen día.</p>
+      <div class="ticket" id="ticket"></div>
+    </div>
+  </div>
+
+  <section class="faq">
+    <h2>Preguntas frecuentes</h2>
+    <p class="sub">Respuestas honestas. Casi todas terminan en "no".</p>
+
+    <details>
+      <summary>¿Van a leer mi alegación? <span class="plus">+</span></summary>
+      <p>Sí, de arriba abajo. Pero solo para enterarnos del chisme. Después va directa al archivo.</p>
+    </details>
+    <details>
+      <summary>¿Me van a responder? <span class="plus">+</span></summary>
+      <p>No. El mensajito que aparece al enviar es automático. Detrás no hay nadie escribiéndole.</p>
+    </details>
+    <details>
+      <summary>¿Sirve de algo alegar aquí? <span class="plus">+</span></summary>
+      <p>No. No sirve absolutamente de nada, porque nos da igual. Lo decimos sin rodeos.</p>
+    </details>
+    <details>
+      <summary>¿Y si mi alegación es muy buena? <span class="plus">+</span></summary>
+      <p>Da igual. Buena, mala o brillante, el resultado es el mismo: nada. Eso sí, si trae buen chisme, la comentaremos.</p>
+    </details>
+    <details>
+      <summary>¿Van a cambiar algo gracias a mí? <span class="plus">+</span></summary>
+      <p>No. Nada va a cambiar. Seguiremos exactamente igual que antes de que usted apareciera.</p>
+    </details>
+    <details>
+      <summary>¿Puedo presentar una alegación contra las alegaciones? <span class="plus">+</span></summary>
+      <p>Puede, pero tampoco le servirá de nada. Nos da igual incluso eso.</p>
+    </details>
+  </section>
+
+  <footer>
+    <div class="f-brand">Programación <span>a Medida</span></div>
+    <div class="f-note">Leemos · Cotilleamos · No cambiamos</div>
+  </footer>
+</div>
+
+<script>
+  const rango = document.getElementById('rango');
+  const rangoVal = document.getElementById('rangoVal');
+  const niveles = [
+    [0, 'Casi nada'], [20, 'Leve fastidio'], [40, 'Algo molesto'],
+    [60, 'Bastante enfadado'], [80, 'Muy cabreado'], [95, 'FURIA VOLCÁNICA']
+  ];
+  function updRango() {
+    const v = +rango.value;
+    let txt = 'A medio gas';
+    for (const [t, l] of niveles) if (v >= t) txt = l;
+    rangoVal.textContent = txt;
+  }
+  rango.addEventListener('input', updRango);
+  updRango();
+
+  document.getElementById('enviar').addEventListener('click', async () => {
+    const nombre = document.getElementById('nombre').value.trim() || 'Anónimo';
+    const asunto = document.getElementById('asunto').value.trim() || '(sin asunto)';
+    const categoria = document.getElementById('categoria').value;
+    const queja = document.getElementById('queja').value.trim();
+    const nivel = document.getElementById('rango').value;
+    const resp = document.getElementById('response');
+    const respText = document.getElementById('respText');
+    const ticket = document.getElementById('ticket');
+    const btn = document.getElementById('enviar');
+
+    const id = 'AL-' + Math.floor(100000 + Math.random() * 899999);
+
+    if (!queja) {
+      respText.textContent = 'No ha escrito ninguna alegación. Qué decepción, sin chisme. Aun así, no haremos nada.';
+      ticket.textContent = `Ticket ${id} · Estado: VACÍO · Próxima acción: ninguna`;
+      resp.classList.add('show');
+      resp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // === CONFIGURACIÓN DE ENVÍO ===
+    // Sustituye TU_ID_FORMSPREE por el código que te da Formspree
+    // (ej: "xqkzabcd"). Hasta entonces, la alegación se "archiva" sin enviarse.
+    const FORMSPREE_ID = 'TU_ID_FORMSPREE';
+
+    btn.disabled = true;
+    btn.textContent = 'Archivando...';
+
+    if (FORMSPREE_ID && FORMSPREE_ID !== 'TU_ID_FORMSPREE') {
+      try {
+        await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            _subject: 'Nueva alegación ' + id + ' · ' + asunto,
+            Ticket: id,
+            Nombre: nombre,
+            Asunto: asunto,
+            Categoria: categoria,
+            'Nivel de indignacion': nivel + '/100',
+            Alegacion: queja
+          })
+        });
+      } catch (e) { /* nos da igual, igualmente */ }
+    }
+
+    respText.textContent = `Gracias, ${nombre}. Hemos leído su alegación con la máxima atención, solo para enterarnos del chisme, y la hemos archivado donde no la va a tocar nadie. Que tenga un día estupendo.`;
+    ticket.textContent = `Ticket ${id} · Estado: RECIBIDO · Próxima acción: ninguna`;
+    resp.classList.add('show');
+    resp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    btn.disabled = false;
+    btn.textContent = 'Enviar al vacío →';
+  });
+</script>
+
+
+</body></html>
