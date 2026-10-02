@@ -56,7 +56,7 @@
   }
 
   /* HERO */
-  header { padding: 80px 0 50px; }
+  header { padding: 110px 0 50px; }
   .kicker {
     font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 3px;
     text-transform: uppercase; color: var(--accent); margin-bottom: 22px;
@@ -194,23 +194,7 @@
 <div class="grain"></div>
 
 <div class="wrap">
-  <nav>
-    <div class="brand">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M32 6 V14" stroke="#e8492b" stroke-width="3" stroke-linecap="round"></path>
-        <circle cx="32" cy="5" r="3" fill="#e8492b"></circle>
-        <rect x="16" y="14" width="32" height="26" rx="5" stroke="#1f1d1a" stroke-width="3"></rect>
-        <circle cx="25" cy="26" r="3.4" fill="#e8492b"></circle>
-        <circle cx="39" cy="26" r="3.4" fill="#e8492b"></circle>
-        <path d="M25 33 H39" stroke="#1f1d1a" stroke-width="3" stroke-linecap="round"></path>
-        <path d="M16 24 H10 M48 24 H54" stroke="#1f1d1a" stroke-width="3" stroke-linecap="round"></path>
-        <rect x="20" y="44" width="24" height="14" rx="3" stroke="#1f1d1a" stroke-width="3"></rect>
-      </svg>
-    </div>
-  </nav>
-
   <header>
-    <div class="kicker">Oficina oficial de alegaciones</div>
     <h1>
       <span class="l1">Cuéntenoslo</span>
       <span class="l2">todo. Igualmente.</span>
@@ -218,136 +202,29 @@
     <p class="lede">Ponga aquí su alegación, aunque nos da igual. <b>La leeremos, pero solo para enterarnos del chisme</b>.</p>
   </header>
 
-  <div class="strip">
-    <div class="strip-track">
-      <span>SU OPINIÓN NOS DA IGUAL <b>·</b></span>
-      <span>PERO PUEDE ALEGAR <b>·</b></span>
-      <span>LO LEEMOS SOLO POR EL CHISME <b>·</b></span>
-      <span>GRACIAS POR EL SALSEO <b>·</b></span>
-      <span>SU OPINIÓN NOS DA IGUAL <b>·</b></span>
-      <span>PERO PUEDE ALEGAR <b>·</b></span>
-      <span>LO LEEMOS SOLO POR EL CHISME <b>·</b></span>
-      <span>GRACIAS POR EL SALSEO <b>·</b></span>
-    </div>
-  </div>
-
-  <div class="form-card" data-num="∞">
-    <div class="form-title">Ponga su alegación</div>
-    <p class="form-sub">Aunque nos da igual. La leeremos solo para enterarnos del chisme.</p>
-
-    <div class="row">
-      <div class="field">
-        <label>Nombre <span class="opt">(o anónimo, da igual)</span></label>
-        <input type="text" id="nombre" placeholder="Su nombre">
-      </div>
-      <div class="field">
-        <label>Asunto</label>
-        <input type="text" id="asunto" placeholder="¿Qué alega hoy?">
-      </div>
-    </div>
-
+  <div class="form-card" data-num="∞" style="margin-bottom:90px">
     <div class="field">
-      <label>Tipo de alegación</label>
-      <select id="categoria">
-        <option>El producto no hace lo que prometieron</option>
-        <option>Tardaron una eternidad</option>
-        <option>Me cobraron de más</option>
-        <option>Nadie contesta nunca</option>
-        <option>Simplemente tenía un mal día</option>
-        <option>Otra cosa que tampoco van a arreglar</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Su alegación (nos da igual, pero cuente el chisme entero)</label>
+      <label for="queja">Su alegación</label>
       <textarea id="queja" placeholder="Cuéntelo todo, con nombres y detalles. No vamos a hacer nada, pero queremos enterarnos."></textarea>
     </div>
 
-    <div class="field">
-      <label>Nivel de indignación</label>
-      <div class="meter-wrap">
-        <input type="range" id="rango" min="0" max="100" value="50">
-        <div class="meter-labels">
-          <span>Leve molestia</span>
-          <span id="rangoVal">Algo molesto</span>
-          <span>Furia volcánica</span>
-        </div>
-      </div>
-    </div>
-
     <button class="submit" id="enviar">Enviar al vacío →</button>
-    <p class="fineprint">Al enviar, acepta que probablemente no pase absolutamente nada.</p>
 
     <div class="response" id="response">
       <h3>Alegación <em>recibida</em>. Chisme anotado.</h3>
-      <p id="respText">Gracias. La hemos leído entera, solo por el chisme. Que tenga un buen día.</p>
+      <p id="respText"></p>
       <div class="ticket" id="ticket"></div>
     </div>
   </div>
-
-  <section class="faq">
-    <h2>Preguntas frecuentes</h2>
-    <p class="sub">Respuestas honestas. Casi todas terminan en "no".</p>
-
-    <details>
-      <summary>¿Van a leer mi alegación? <span class="plus">+</span></summary>
-      <p>Sí, de arriba abajo. Pero solo para enterarnos del chisme. Después va directa al archivo.</p>
-    </details>
-    <details>
-      <summary>¿Me van a responder? <span class="plus">+</span></summary>
-      <p>No. El mensajito que aparece al enviar es automático. Detrás no hay nadie escribiéndole.</p>
-    </details>
-    <details>
-      <summary>¿Sirve de algo alegar aquí? <span class="plus">+</span></summary>
-      <p>No. No sirve absolutamente de nada, porque nos da igual. Lo decimos sin rodeos.</p>
-    </details>
-    <details>
-      <summary>¿Y si mi alegación es muy buena? <span class="plus">+</span></summary>
-      <p>Da igual. Buena, mala o brillante, el resultado es el mismo: nada. Eso sí, si trae buen chisme, la comentaremos.</p>
-    </details>
-    <details>
-      <summary>¿Van a cambiar algo gracias a mí? <span class="plus">+</span></summary>
-      <p>No. Nada va a cambiar. Seguiremos exactamente igual que antes de que usted apareciera.</p>
-    </details>
-    <details>
-      <summary>¿Puedo presentar una alegación contra las alegaciones? <span class="plus">+</span></summary>
-      <p>Puede, pero tampoco le servirá de nada. Nos da igual incluso eso.</p>
-    </details>
-  </section>
-
-  <footer>
-    <div class="f-brand">Programación <span>a Medida</span></div>
-    <div class="f-note">Leemos · Cotilleamos · No cambiamos</div>
-  </footer>
 </div>
 
 <script>
-  const rango = document.getElementById('rango');
-  const rangoVal = document.getElementById('rangoVal');
-  const niveles = [
-    [0, 'Casi nada'], [20, 'Leve fastidio'], [40, 'Algo molesto'],
-    [60, 'Bastante enfadado'], [80, 'Muy cabreado'], [95, 'FURIA VOLCÁNICA']
-  ];
-  function updRango() {
-    const v = +rango.value;
-    let txt = 'A medio gas';
-    for (const [t, l] of niveles) if (v >= t) txt = l;
-    rangoVal.textContent = txt;
-  }
-  rango.addEventListener('input', updRango);
-  updRango();
-
   document.getElementById('enviar').addEventListener('click', async () => {
-    const nombre = document.getElementById('nombre').value.trim() || 'Anónimo';
-    const asunto = document.getElementById('asunto').value.trim() || '(sin asunto)';
-    const categoria = document.getElementById('categoria').value;
     const queja = document.getElementById('queja').value.trim();
-    const nivel = document.getElementById('rango').value;
     const resp = document.getElementById('response');
     const respText = document.getElementById('respText');
     const ticket = document.getElementById('ticket');
     const btn = document.getElementById('enviar');
-
     const id = 'AL-' + Math.floor(100000 + Math.random() * 899999);
 
     if (!queja) {
@@ -371,20 +248,12 @@
         await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            _subject: 'Nueva alegación ' + id + ' · ' + asunto,
-            Ticket: id,
-            Nombre: nombre,
-            Asunto: asunto,
-            Categoria: categoria,
-            'Nivel de indignacion': nivel + '/100',
-            Alegacion: queja
-          })
+          body: JSON.stringify({ _subject: 'Nueva alegación ' + id, Ticket: id, Alegacion: queja })
         });
       } catch (e) { /* nos da igual, igualmente */ }
     }
 
-    respText.textContent = `Gracias, ${nombre}. Hemos leído su alegación con la máxima atención, solo para enterarnos del chisme, y la hemos archivado donde no la va a tocar nadie. Que tenga un día estupendo.`;
+    respText.textContent = 'Gracias. Hemos leído su alegación con la máxima atención, solo para enterarnos del chisme, y la hemos archivado donde no la va a tocar nadie. Que tenga un día estupendo.';
     ticket.textContent = `Ticket ${id} · Estado: RECIBIDO · Próxima acción: ninguna`;
     resp.classList.add('show');
     resp.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -392,6 +261,4 @@
     btn.textContent = 'Enviar al vacío →';
   });
 </script>
-
-
 </body></html>
